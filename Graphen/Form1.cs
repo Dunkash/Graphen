@@ -27,16 +27,10 @@ namespace Graphen
             g = Graphics.FromImage(buf);   // инициализация g
             g.Clear(Color.White);
             comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
-            comboBox1.Items.Add("Sin");
-            comboBox1.Items.Add("Cos");
-            comboBox1.Items.Add("X");
-            comboBox1.Items.Add("X^2");
             //g.RenderingOrigin = new Point(400, 225);
             //Coordinates(225);
 
-            var x = xes(-5, 10);
-            var y = values(-5, 10, z => z);
-            Graph(x, y, g);
+            //Draw(Math.PI*(-1), Math.PI, Math.Sin);
 
         }
 
@@ -66,7 +60,7 @@ namespace Graphen
             {
                 x.Add(beg + i * (end - beg) / sample);
             }
-            double scalX = 800 / x.Max() + Math.Abs(x.Min());
+            double scalX = 800 / (x.Max() + Math.Abs(x.Min()));
             for (int i = 0; i < sample; i += 1)
                 x[i] *= scalX;
             return x;
@@ -98,53 +92,49 @@ namespace Graphen
             g.DrawLine(black, 0, y, 800, y);
         }
 
-        private void comboBox1_SelectionChanged(object sender, EventArgs e)
+        private void Draw(double beg, double end, Func<double,double> func)
         {
+            g.Clear(Color.White);
+            var red = new Pen(Color.Red, 2);
+
+            var x = xes(beg, end);
+            var y = values(beg, end, func);
+
+            var yscale = y.Max() / Math.Abs(y.Min());
+            var heig = 450 / (1 + yscale);
+
+            var xscale = x.Max() / Math.Abs(x.Min());
+            var wid = 800 / (1 + xscale);
+
+            Coordinates(((int)(wid)), ((int)(450 - heig)));
+
+            for (int i = 0; i < x.Count - 1; i++)
+            {
+                g.DrawLine(red, (float)x[i] + (float)wid, -1 * (float)y[i] + (float)(450 - heig), (float)x[i + 1] + (float)wid, -1 * (float)y[i + 1] + (float)(450-heig)); ;
+            }
         }
 
-        private void comboBox1_DropDownClosed(object sender, EventArgs e)
-        {
-
-        }
-
-/*
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
 
             if (comboBox1.SelectedItem.ToString() == "X")
             {
-                Coordinates();
-                var x = xes(-10, 10);
-                var y = values(-10, 10, z => z);
-                Graph(x, y, g);
-                Update();
+                Draw(-5, 10, x => x);
             }
             else if (comboBox1.SelectedItem.ToString() == "Sin")
             {
-                Coordinates();
-                var x = xes(Math.PI * (-1), Math.PI);
-                var y = values(Math.PI * (-1), Math.PI, Math.Sin);
-                Graph(x, y, g);
-                Update(); 
+                Draw(Math.PI * (-1), Math.PI, Math.Sin);
             }
             else if (comboBox1.SelectedItem.ToString() == "Cos")
             {
-                Coordinates();
-                var x = xes(Math.PI * (-1), Math.PI);
-                var y = values(Math.PI * (-1), Math.PI, Math.Cos);
-                Graph(x, y, g);
-                Update();
+                Draw(Math.PI * (-1), Math.PI, Math.Cos);
             }
             else if (comboBox1.SelectedItem.ToString() == "X^2")
             {
-                Coordinates();
-                var x = xes(-10, 10);
-                var y = values(-10, 10, z => z * z);
-                Graph(x, y, g);
-                Update();
+                Draw(-5, 10, x => x * x);
             }
 
         }
-*/
+
     }
 }
