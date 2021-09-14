@@ -32,7 +32,12 @@ namespace Graphen
             comboBox1.Items.Add("X");
             comboBox1.Items.Add("X^2");
             //g.RenderingOrigin = new Point(400, 225);
-            Coordinates(225);
+            //Coordinates(225);
+
+            var x = xes(-5, 10);
+            var y = values(-5, 10, z => z);
+            Graph(x, y, g);
+
         }
 
 
@@ -61,7 +66,7 @@ namespace Graphen
             {
                 x.Add(beg + i * (end - beg) / sample);
             }
-            double scalX = 400 / Math.Max(x.Max(), Math.Abs(x.Min()));
+            double scalX = 800 / x.Max() + Math.Abs(x.Min());
             for (int i = 0; i < sample; i += 1)
                 x[i] *= scalX;
             return x;
@@ -70,23 +75,31 @@ namespace Graphen
         public void Graph(List<Double> x, List<Double> y, Graphics g)
         {
             var black = new Pen(Color.Red, 2);
+
+            var yscale = y.Max() / Math.Abs(y.Min());
+            var heig = 450 / (1 + yscale);
+
+            var xscale = x.Max() / Math.Abs(x.Min());
+            var wid = 800 / (1 + xscale);
+
+            Coordinates(((int)(wid)), ((int)(450-heig)));
+
             for (int i =0; i<x.Count-1; i++)
             {
                 g.DrawLine(black, (float)x[i]+marW, -1*(float)y[i]+marH, (float)x[i + 1]+marW, -1*(float)y[i + 1]+marH);
             }
         }
 
-        private void Coordinates(int y)
+        private void Coordinates(int x, int y)
         {
             g.Clear(Color.White);
             var black = new Pen(Color.Black, 2);
-            g.DrawLine(black, 400, 0, 400, 450);
+            g.DrawLine(black, x, 0, x, 450);
             g.DrawLine(black, 0, y, 800, y);
         }
 
         private void comboBox1_SelectionChanged(object sender, EventArgs e)
         {
-
         }
 
         private void comboBox1_DropDownClosed(object sender, EventArgs e)
