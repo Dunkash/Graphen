@@ -32,7 +32,7 @@ namespace Graphen
             comboBox1.Items.Add("X");
             comboBox1.Items.Add("X^2");
             //g.RenderingOrigin = new Point(400, 225);
-            Coordinates();
+            Coordinates(225);
         }
 
 
@@ -48,7 +48,7 @@ namespace Graphen
             {
                 values.Add(graph(x[i]));
             }
-            double scalY = 225 / Math.Max(values.Max(), Math.Abs(values.Min()));
+            double scalY = 450 / (values.Max() + Math.Abs(values.Min()));
             for (int i = 0; i < values.Count; i += 1)
                 values[i] *= scalY;
             return values;
@@ -76,12 +76,12 @@ namespace Graphen
             }
         }
 
-        private void Coordinates()
+        private void Coordinates(int y)
         {
             g.Clear(Color.White);
             var black = new Pen(Color.Black, 2);
             g.DrawLine(black, 400, 0, 400, 450);
-            g.DrawLine(black, 0, 225, 800, 225);
+            g.DrawLine(black, 0, y, 800, y);
         }
 
         private void comboBox1_SelectionChanged(object sender, EventArgs e)
@@ -94,6 +94,7 @@ namespace Graphen
 
         }
 
+/*
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
 
@@ -131,5 +132,6 @@ namespace Graphen
             }
 
         }
+*/
     }
 }
