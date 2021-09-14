@@ -1,0 +1,10 @@
+C:\Users\Dunkash\Downloads\Graphen\Graphen\bin\Release\Graphen.exe.config
+C:\Users\Dunkash\Downloads\Graphen\Graphen\bin\Release\Graphen.exe
+C:\Users\Dunkash\Downloads\Graphen\Graphen\bin\Release\Graphen.pdb
+C:\Users\Dunkash\Downloads\Graphen\Graphen\obj\Release\Graphen.csproj.AssemblyReference.cache
+C:\Users\Dunkash\Downloads\Graphen\Graphen\obj\Release\Graphen.Form1.resources
+C:\Users\Dunkash\Downloads\Graphen\Graphen\obj\Release\Graphen.Properties.Resources.resources
+C:\Users\Dunkash\Downloads\Graphen\Graphen\obj\Release\Graphen.csproj.GenerateResource.cache
+C:\Users\Dunkash\Downloads\Graphen\Graphen\obj\Release\Graphen.csproj.CoreCompileInputs.cache
+C:\Users\Dunkash\Downloads\Graphen\Graphen\obj\Release\Graphen.exe
+C:\Users\Dunkash\Downloads\Graphen\Graphen\obj\Release\Graphen.pdb

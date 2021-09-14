@@ -26,7 +26,6 @@ namespace Graphen
             pictureBox1.BackgroundImage = buf;
             g = Graphics.FromImage(buf);   // инициализация g
             g.Clear(Color.White);
-            comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
             //g.RenderingOrigin = new Point(400, 225);
             //Coordinates(225);
 
@@ -114,27 +113,33 @@ namespace Graphen
             }
         }
 
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+
+        private void X_Click(object sender, EventArgs e)
         {
-
-            if (comboBox1.SelectedItem.ToString() == "X")
-            {
-                Draw(-5, 10, x => x);
-            }
-            else if (comboBox1.SelectedItem.ToString() == "Sin")
-            {
-                Draw(Math.PI * (-1), Math.PI, Math.Sin);
-            }
-            else if (comboBox1.SelectedItem.ToString() == "Cos")
-            {
-                Draw(Math.PI * (-1), Math.PI, Math.Cos);
-            }
-            else if (comboBox1.SelectedItem.ToString() == "X^2")
-            {
-                Draw(-5, 10, x => x * x);
-            }
-
+            this.Refresh();
+            Draw(-5, 10, x => x);
+            this.Refresh();
         }
 
+        private void Square_Click(object sender, EventArgs e)
+        {
+            this.Refresh();
+            Draw(-5, 10, x => x*x);
+            this.Refresh();
+        }
+
+        private void Sin_Click(object sender, EventArgs e)
+        {
+            this.Refresh();
+            Draw(Math.PI * (-1), Math.PI, Math.Sin);
+            this.Refresh();
+        }
+
+        private void Cos_Click(object sender, EventArgs e)
+        {
+            this.Refresh();
+            Draw(Math.PI * (-1), Math.PI, Math.Cos);
+            this.Refresh();
+        }
     }
 }
